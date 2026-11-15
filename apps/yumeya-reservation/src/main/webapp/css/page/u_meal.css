@@ -1,0 +1,242 @@
+.meal .under_title{
+    background-image: none;
+    background-position: center 54%;
+    background-size: cover;
+    height: 40vh;
+    position: relative;
+
+}
+
+.meal .under_title2{
+    background-image: none;
+    background-position: center 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 35vh;
+    position: relative;
+
+}
+
+
+.under_title2 .contents h2{
+  color: #fff;
+  font-size: 2rem;
+}
+
+.under_title2 .contents p{
+  color: #fff;
+}
+
+.under_title h1{
+    position: absolute;
+    background-color: rgba(55,55,55,0.5);
+    color: #fff;
+    display: inline-block;
+    font-size: 2.4rem;
+    font-weight: 900;
+    height: 14vh;
+    text-align: center;
+    border: #0c0c0c 1px solid;
+    box-shadow:#0c0c0c 3px 5px 0;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    writing-mode: vertical-rl;
+    
+}
+
+h2{
+  padding-top: 2vh;
+  padding-bottom: 1vh;
+  font-size: 2.4rem;
+
+}
+
+
+/*====================
+食材紹介
+====================*/
+
+.meal_int li .pw1{
+  background-image: none;
+}
+.meal_int li .pw2{
+  background-image: none;
+    background-position: 0% center;
+
+}
+.meal_int li .pw3{
+  background-image: none;
+}
+
+
+#strength li span:first-child{
+    position: relative;
+    display: block;
+    padding-top: 40rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+
+    
+}
+
+
+
+.meal_int{
+  width: 100%;
+}
+
+.meal_int li{
+  width: 100%;
+ list-style: none;
+
+}
+
+
+.meal_int h3{
+    position: absolute;
+    top: 10rem;
+    right: calc(50% - 3.5rem);
+    text-shadow: 1px 2px 3px #808080; 
+    color: #FFF;
+    font-size: 3.6rem;
+    font-weight: 900;
+    font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W6", "Hiragino Mincho ProN", "HiraMinProN-W6", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", 'Noto Serif JP', "Times New Roman", Meiryo, serif;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+}
+
+
+.meal_int span.t{
+  display: block;
+padding: 3rem;
+margin-bottom: 5vh;
+
+}
+
+
+
+
+/*====================
+食事案内
+====================*/
+
+
+
+
+.dec_card .tw{
+  margin-bottom: 7vh;
+}
+
+.dec_card h2 .c-b {
+    border: solid 1px #333;
+    color: #FFF;
+    background-color: #333;
+}
+
+
+.dec_card h2 .c {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-bottom: 1.5em;
+    padding: 0.5rem 1.5rem;
+    line-height: 1;
+    font-size: 1.6rem;
+    vertical-align: baseline;
+}
+
+
+.dec_card h2 {
+    margin-bottom: 4rem;
+    border-bottom: solid 1px #333;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W6", "Hiragino Mincho ProN", "HiraMinProN-W6", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", 'Noto Serif JP', "Times New Roman", Meiryo, serif;
+}
+
+.list-td{
+    margin: 0.3em 0;
+}
+
+.list-td > li{
+  margin-top: 50px;
+  list-style: none;
+}
+
+
+.list-td > li .t {
+    padding-right: 3rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    width: 10rem;
+
+}
+
+.list-td > li .t, .list-td > li .d {
+    display: table-cell;
+    padding: 0.5rem 0;
+}
+
+@media screen and (min-width:1025px){
+  .meal_int{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.meal p{
+  font-size: 1.8rem;
+}
+
+.meal .under_title2{
+  height: 15vh;
+}
+
+.meal .under_title2 p{
+  width: 1500px;
+}
+
+.meal_int .t{
+  font-size: 2rem;
+}
+
+.meal_int{
+    background-image: none;
+    background-position: center 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.meal_int li{
+  border-left: 1px solid #fff;
+}
+
+.meal .flex_contents{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex_contents .tw{
+  display: block;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex_contents .tw p{
+  height: 10vh;
+}
+
+.meal .dec_card{
+    padding-left: 0%;
+    padding-right: 0%;
+    max-width: 80%;
+}
+
+
+}/* min-width:1025px */
+

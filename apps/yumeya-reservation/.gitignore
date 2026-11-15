@@ -1,0 +1,21 @@
+# Java/Maven
+/target/
+*.class
+*.war
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+.vscode/settings.json
+# Local secrets, environment and backups
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+# Keep source only; no real private client analysis or full old portfolio ZIPs
+PF修正後.zip
+*.bak

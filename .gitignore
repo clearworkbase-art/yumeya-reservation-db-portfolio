@@ -1,0 +1,33 @@
+# Build outputs
+target/
+**/target/
+*.war
+
+# Local runtime files
+*.log
+logs/
+tomcat-logs/
+
+# Database exports and backups
+*.dump
+*.backup
+*.bak
+*.sql.gz
+backups/
+db-backups/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.p12
+*.jks
+secrets/
+
+# IDE and OS files
+.vscode/
+.idea/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini

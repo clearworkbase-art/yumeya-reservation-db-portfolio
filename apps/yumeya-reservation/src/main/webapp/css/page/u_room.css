@@ -1,0 +1,196 @@
+
+ 
+ .under_title{
+    background-image: none;
+    background-position: center 80%;
+    background-size: cover;
+    height: 40vh;
+    position: relative;
+
+}
+
+/*Container*/
+.container{
+	margin-bottom: 10vh;
+}
+
+
+
+.tab_area{
+	display: flex;
+	justify-content: space-between;
+}
+
+.tab_area li{
+	list-style: none;
+}
+.tab_area li img{
+  margin-bottom: -7vh;
+}
+
+.tab_area li h2{
+	font-size: 1.8rem;
+	 text-shadow: 1px 1px 1px #808080; 
+}
+
+/*thumbnail*/
+
+.thumbnail_wrap q{
+	height: 60vh;
+}
+
+
+.thumbnail_wrap{
+	display: block;
+	height: auto;
+	width: 100%;
+	margin-bottom: 5vh;
+}
+
+.thumbnail_wrap img{
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	vertical-align: middle;
+}
+
+
+.thumbnail_wrap .Img_wrap{
+	display: flex;
+ justify-content: space-between;
+}
+
+
+
+.thumbnail_wrap .Img_wrap li{
+    width: 25%;
+    border: 2px solid #ccc;
+	list-style: none;
+}
+
+/* Container*/
+.room h2 {
+	margin-top: 5vh;
+	margin-bottom: 2vh;
+	font-size: 1.8rem;
+}
+
+
+.room span.c {
+    border: solid 1px #333;
+    color: #FFF;
+    background-color: #333;
+    padding: 2px 5px;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+
+
+/* 表*/
+
+
+.list-td > li {
+    display: table-row;
+}
+
+
+ .list-td {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: dotted 1px #d4c29b;
+    border-bottom: dotted 1px #d4c29b;
+	border-spacing: 1rem 2rem;
+	margin-bottom: 5vh;
+}
+
+
+
+ .list-td .t {
+    font-weight: bold;
+    white-space: nowrap;
+	width: 20%;
+	vertical-align: top;
+}
+
+.list-td > li .t, .list-td > li .d {
+    display: table-cell;
+    /* padding: 1rem 0; */
+}
+
+
+.list-td .t, .dec_card .list-td .d {
+    padding: 0.5rem 0;
+    border: none;
+    font-size: 1.6rem;
+}
+
+/* バナー*/
+
+.light_gallery{
+	text-align: center;
+}
+
+.light_gallery h3{
+	font-size: 2.4rem;
+}
+
+.light_gallery p img{
+	max-width: 80%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media screen and (min-width:1025px){
+
+.tab_area li h2{
+	font-size: 2.4rem;
+	 text-shadow: 1px 1px 1px #808080; 
+}
+	
+.room h2 {
+		font-size:2.8rem;
+	}
+
+.tab_area li img{
+  margin-bottom: -12vh;
+}
+
+
+
+.thumbnail_wrap .q{
+	height: 600px;
+}
+
+.thumbnail_wrap .q img{
+	height: 600px;
+}
+
+
+.col-3{
+	display: flex;
+
+}
+
+
+.list-td{
+width: 70%;
+    margin-top: 6rem;
+    padding-top:2rem;
+	padding-bottom: 7rem;
+}
+
+.light_gallery{
+	margin-top: 6rem;
+    padding-top: 2rem;
+}
+
+.light_gallery p img{
+	max-width: 80%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+}/* min-width:1025px */
+
+

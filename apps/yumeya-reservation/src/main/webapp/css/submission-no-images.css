@@ -1,0 +1,25 @@
+/* Submission copy: images with unverified rights are intentionally omitted. */
+body.submission-no-images,
+body.submission-no-images * {
+    background-image: none !important;
+}
+
+body.submission-no-images .submission-image-placeholder {
+    display: block;
+    min-height: 3rem;
+    width: 100%;
+    border: 1px solid #c9b89f;
+    background: linear-gradient(135deg, #f4eee4, #e6d8c5);
+    color: #5b4b3a;
+    box-sizing: border-box;
+}
+
+body.submission-no-images .submission-image-placeholder::after {
+    content: "画像は権利確認後に差し替え";
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    padding: .75rem;
+    font-size: .85rem;
+}
