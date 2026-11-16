@@ -17,7 +17,7 @@
 <main class="reservation-container">
     <p class="eyebrow">RESERVATION SYSTEM · JAVA SERVLET / JSP</p>
     <h1>ご宿泊内容の入力</h1>
-    <p class="demo-notice"><strong>ポートフォリオ用デモ</strong>です。実際の宿泊予約・空室照会・決済は行われません。確認画面の次に「デモ予約をDBに保存」を押すと、架空の入力データをローカルPostgreSQLへ保存します。氏名・連絡先は収集しません。</p>
+    <p class="demo-notice"><strong>ポートフォリオ用デモ</strong>です。実際の宿泊予約・空室照会・決済は行われません。確認画面の次に「デモ予約をDBに保存」を押すと、架空の入力データをデモ用PostgreSQLへ保存します。氏名・連絡先は収集しません。</p>
     <ol class="steps"><li class="current">1. 条件入力</li><li>2. 内容確認</li><li>3. デモ完了</li></ol>
     <%-- Error messages are authored on the server, never echoed from user input. --%>
     <p class="error" role="alert" ${empty errorMessage ? 'hidden' : ''}>${errorMessage}</p>

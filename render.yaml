@@ -1,0 +1,19 @@
+# Render Blueprint: one free Docker web service; no database is provisioned on Render.
+# Create the PostgreSQL database separately on Neon Free.
+services:
+  - type: web
+    name: yumeya-reservation-demo
+    runtime: docker
+    plan: free
+    dockerfilePath: ./apps/yumeya-reservation/Dockerfile
+    dockerContext: ./apps/yumeya-reservation
+    healthCheckPath: /health
+    envVars:
+      - key: YUMEYA_PUBLIC_DEMO
+        value: 'true'
+      - key: YUMEYA_JDBC_URL
+        sync: false
+      - key: YUMEYA_DB_USER
+        sync: false
+      - key: YUMEYA_DB_PASSWORD
+        sync: false

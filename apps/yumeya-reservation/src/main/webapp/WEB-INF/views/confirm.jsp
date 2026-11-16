@@ -10,7 +10,7 @@
 <div class="portfolio-demo-banner" role="note"><strong>架空の旅館・ポートフォリオ作品</strong> ｜ 実際の宿泊予約は受け付けていません。</div>
 <header class="reservation-header"><a href="${pageContext.request.contextPath}/index.html">銀山温泉 夢屋旅館</a><span>宿泊予約DBデモ</span></header>
 <main class="reservation-container"><p class="eyebrow">RESERVATION SYSTEM · PostgreSQL</p><h1>入力内容の確認</h1>
-<p class="demo-notice">「デモ予約をDBに保存」を押すと、ローカルPostgreSQLに架空の予約レコードが保存されます。実際の宿泊予約・決済・メール送信は行われません。</p>
+<p class="demo-notice">「デモ予約をDBに保存」を押すと、デモ用PostgreSQLに架空の予約レコードが保存されます。実際の宿泊予約・決済・メール送信は行われません。</p>
 <p class="error" role="alert" ${empty errorMessage ? 'hidden' : ''}>${errorMessage}</p>
 <ol class="steps"><li>1. 条件入力</li><li class="current">2. 内容確認</li><li>3. DB登録完了</li></ol>
 <dl class="review-list"><div><dt>客室</dt><dd>${reservation.roomLabel}</dd></div>

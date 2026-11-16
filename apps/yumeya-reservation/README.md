@@ -1,69 +1,44 @@
-# 夢屋旅館 v2：PostgreSQL/JDBCによる宿泊予約DBデモ
+# 夢屋旅館｜Java・PostgreSQLを使った予約システム
 
-既存のWebサイトとServlet/JSPの入力画面を活用した、**ローカル専用・架空データ専用**の個人制作・学習作品です。実在する旅館の予約は受け付けません。採用担当者に、DB設計・制約・JDBC連携・整合性制御を説明できることを目的にしています。
+架空の旅館の予約画面を、Java Servlet/JSPとPostgreSQLにつないだ学習用アプリです。ローカル環境で、予約の入力・確認・登録・検索・取消を試せます。実際の宿泊予約を受け付けるサービスではありません。
 
-## プロジェクト概要
+## 予約の流れ
 
-- 予約入力から確認、PostgreSQLへの保存、予約一覧、取消までをServlet/JSPで実装
-- `rooms` と `reservations` を外部キーで関連付け、予約期間の重複をDB制約で防止
-- DBパスワードはソースコードに置かず、Tomcatプロセスの環境変数から取得
-- AIによる実装補助を一部利用。実装内容・検証結果はこのリポジトリのソースと資料に基づいて確認できるようにしています
+1. 客室・宿泊日・人数を入力する
+2. 入力内容を確認する
+3. JavaからJDBCを使ってPostgreSQLに保存する
+4. 予約一覧で確認し、必要なら取り消す
 
-## DB設計・実装上の工夫
+保存処理は [`ReservationRepository.java`](src/main/java/jp/portfolio/yumeya/ReservationRepository.java) にまとめています。
 
-- `PRIMARY KEY`、`FOREIGN KEY`、`NOT NULL`、`CHECK` で不正な状態をDB側でも拒否
-- `EXCLUDE USING gist` と半開区間 `[)` の `daterange` で、同室の確定予約が同時実行でも重複しない設計
-- 取消は削除せず `status = 'CANCELLED'` と `cancelled_at` を更新し、履歴を保持
-- JDBCは `PreparedStatement` を使用し、SQLインジェクションを避ける
-- 1文のINSERT/UPDATEはDBの原子性で完結。複数業務処理をまたぐトランザクション管理は今後の改善対象
-- 独立テストDBで、アプリロールから不要なCREATE/ALTER/DROP/TRUNCATEと直接`nextval()`を拒否しつつ、sequence権限なしのIDENTITY INSERTが成功することを実測
+## DBで確認したかったこと
 
-詳細は [`docs/DB_DESIGN.md`](docs/DB_DESIGN.md) を参照してください。
-最小権限化の移行設計・実測結果は [`docs/DB_LEAST_PRIVILEGE.md`](docs/DB_LEAST_PRIVILEGE.md)、テストDB資産の扱いは [`docs/DB_TEST_ASSETS_AUDIT.md`](docs/DB_TEST_ASSETS_AUDIT.md) を参照してください。
+**同じ客室を同じ期間に二重予約できないようにすること**を重視しました。
 
-## 主な機能
+Javaだけで「空いているか」を確認すると、別の処理が同時に予約を登録する可能性があります。そこで、PostgreSQLの `EXCLUDE USING gist` 制約で重複を拒否する構成にしています。チェックアウト日は宿泊期間に含めず、同じ日の入替えは可能です。
 
-- `DbConnection.java`: 環境変数からJDBC接続情報を取得し、PostgreSQLドライバーを明示初期化
-- `ReservationRepository.java`: PreparedStatementでINSERT/SELECT/JOIN/UPDATE
-- `CompleteServlet.java`: DB保存 → POST/Redirect/GET（保存失敗時503）
-- 管理一覧 `/admin/reservations`: ローカル専用検索・架空予約キャンセル
-- `db/01_schema.sql`: 初期スキーマ、客室3件の投入、制約・インデックス
-- `db/04_tempdb_validation.sql`: 実DBを変更せずに境界条件・取消再予約・SELECT実行計画を検証する一時DB用SQL
-- JUnit 5の入力・ローカルアクセスルールテスト
+取消は削除ではなく、`CANCELLED` と取消時刻の更新で記録します。SQLは `PreparedStatement` を通して実行し、重複予約を示すSQLSTATE `23P01` は利用者向けのメッセージへ変換しています。
 
-## 開発環境
+[DBのテーブルと制約を詳しく見る](docs/DB_DESIGN.md)
 
-Java 17、Maven 3.10、Tomcat 9、PostgreSQL 17、PostgreSQL JDBCドライバー 42.7.14。Javaコンパイラの `release` は11設定で、JDK17でビルドします。
+## テスト結果
 
-初回導入と1コマンド操作は [`docs/WINDOWS_SETUP.md`](docs/WINDOWS_SETUP.md) を参照してください。
+- Maven `clean package` 成功、JUnit 7件成功
+- ローカルTomcatで予約登録・一覧・重複拒否・取消のHTTPテスト成功
+- 専用のテストDBで、境界日付、取消後の再予約、ROLLBACK、DB権限の制限、Java/JDBCの処理を確認
 
-## 提出用コピーの画像方針
+アプリ用ユーザーとDB所有者を分けた権限設計は、独立テストDBで動作を確認しています。**普段使っている開発用DBには、まだ適用していません。**
 
-この提出用コピーでは、Getty Imagesおよび出典・利用権未確認の画像を含めていません。静的HTMLはCSSプレースホルダーで表示します。元リポジトリの画像ファイルは削除・上書きしていません。
+[テスト内容と未確認項目](docs/TEST_PLAN_V2.md) / [最小権限の検証](docs/DB_LEAST_PRIVILEGE.md)
 
-## 2026-11-15時点の検証結果
+## 動かす環境
 
-- Maven `clean package`: 成功
-- JUnit: 7件成功
-- PostgreSQL接続確認: 成功（`rooms=3`、予約件数確認）
-- HTTP Smoke: 登録・一覧・重複拒否・取消を成功
-- テスト予約は削除せず、`CANCELLED` の履歴として保持
-- 最小権限テストDB `yumeya_privtest_aa31def89392`: 所有権分離、CRUD、境界条件、`23P01`、`42501`、ROLLBACK、Java/JDBCを成功
-- 上記最小権限化はテストDBのみで実施。既存の`yumeya_portfolio`には未適用
+Java 17、Maven、Tomcat 9、PostgreSQL 17を使用しています。ビルド方法とローカル起動の手順は[Windowsセットアップ](docs/WINDOWS_SETUP.md)を参照してください。
 
-実行条件と未検証項目は [`docs/TEST_PLAN_V2.md`](docs/TEST_PLAN_V2.md) に記録しています。過去の実行結果と今回の監査結果を混同しないよう、日付を付けています。
+## 今後の課題
 
-## 制約・公開前の注意
+動作確認済みなのはローカル環境です。現在は公開デモ用の設定（予約画面のみ開放・管理画面停止・簡易書き込み制限）も追加していますが、クラウド上での動作は別途確認が必要です。管理画面の本番認証、接続プール、監視、並列POSTの完全な二重送信対策などは未実装です。
 
-- 認証、本番向け認可、DB接続プール、監視は未実装。**外部公開禁止**
-- `LocalOnlyFilter` はローカルアクセス制限のデモであり、本番認証の代替ではない
-- `noindex` は閲覧制限ではない
-- 画像・ロゴ・写真の権利確認が完了するまで、公開候補から除外する
-- 画像の棚卸しは [`docs/IMAGE_RIGHTS_AUDIT.md`](docs/IMAGE_RIGHTS_AUDIT.md) に記録しています
+画像は利用権を確認できていないため提出版から除外し、仮の表示に置き換えています。
 
-## 今後の改善計画
-
-1. 実DBバックアップ・復元確認後、承認を得てDDL実行者とアプリ実行者を分離する
-2. 接続プール、監査ログ、認証・認可を導入する
-3. 境界日付・同時実行・DB障害・権限不足の自動テストを追加する
-4. 出典と利用許諾を確認した画像だけで公開用画面を構成する
+コード作成・修正や調査にはAIの支援も利用しました。実装とテストで確認したこと、まだ実施していないことを区別して記録しています。
