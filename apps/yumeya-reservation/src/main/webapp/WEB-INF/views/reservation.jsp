@@ -13,7 +13,7 @@
 <body>
     <div class="portfolio-demo-banner" role="note"><strong>架空の旅館・ポートフォリオ作品</strong> ｜ Java Servlet/JSPの学習用デモです。実在の施設ではなく、宿泊予約・電話受付・アクセス案内は行っていません。</div>
 
-<header class="reservation-header"><a href="${pageContext.request.contextPath}/index.html">銀山温泉 夢屋旅館</a><span>宿泊予約デモ</span></header>
+<header class="reservation-header"><a href="https://creative-wisp-6affe7.netlify.app/">銀山温泉 夢屋旅館</a><span>宿泊予約デモ</span></header>
 <main class="reservation-container">
     <p class="eyebrow">RESERVATION SYSTEM · JAVA SERVLET / JSP</p>
     <h1>ご宿泊内容の入力</h1>
@@ -39,7 +39,7 @@
         <fieldset><legend>人数</legend><label class="field"><span>大人（1〜4名）</span>
             <select name="guests" required><option value="1">1名</option><option value="2" selected>2名</option><option value="3">3名</option><option value="4">4名</option></select>
         </label></fieldset>
-        <div class="actions"><a class="text-link" href="${pageContext.request.contextPath}/u_room/index.html">客室ページへ戻る</a><button type="submit">入力内容を確認</button></div>
+        <div class="actions"><a class="text-link" href="https://creative-wisp-6affe7.netlify.app/u_room/index.html">客室ページへ戻る</a><button type="submit">入力内容を確認</button></div>
     </form>
 </main>
 <footer class="reservation-footer">&copy; 夢屋旅館 Webアプリ学習用デモ｜実際の予約受付ではありません</footer>
